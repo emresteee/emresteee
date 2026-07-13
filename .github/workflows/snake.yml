@@ -28,6 +28,7 @@ jobs:
       # <style> block before publishing.
       - name: hide progress bar
         run: |
+          chmod -R u+w dist
           sed -i 's/<\/style>/.u{display:none}<\/style>/' dist/github-snake.svg
           sed -i 's/<\/style>/.u{display:none}<\/style>/' dist/github-snake-dark.svg
 
