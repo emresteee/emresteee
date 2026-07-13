@@ -23,6 +23,14 @@ jobs:
             dist/github-snake.svg
             dist/github-snake-dark.svg?palette=github-dark
 
+      # Platane/snk always draws a solid progress bar under the grid (the ".u" element) with
+      # no option to disable it — hide it by appending a CSS override to each generated SVG's
+      # <style> block before publishing.
+      - name: hide progress bar
+        run: |
+          sed -i 's/<\/style>/.u{display:none}<\/style>/' dist/github-snake.svg
+          sed -i 's/<\/style>/.u{display:none}<\/style>/' dist/github-snake-dark.svg
+
       - uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
